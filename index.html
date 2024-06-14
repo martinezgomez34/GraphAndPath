@@ -3,24 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grafo de Ciudades</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Cities Graph</title>
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-    <h1>Graph Visualization</h1>
     <div>
         <div class="vertex">
-            <label for="vertex">Add Vertex: </label>
-            <input type="text" id="vertex" placeholder="Vertex name">
-            <button onclick="addVertex()">Add Vertex</button>
+            <label for="vertex">Add City: </label>
+            <input type="text" id="vertex" placeholder="City name">
+            <button onclick="addVertex()">Add City</button>
         </div>
         <div class="edge">
             <label for="start">Start: </label>
-            <input type="text" id="start" placeholder="Start vertex">
+            <input type="text" id="start" placeholder="Start City">
             <label for="end">End: </label>
-            <input type="text" id="end" placeholder="End vertex">
+            <input type="text" id="end" placeholder="End City">
             <label for="weight">Weight: </label>
-            <input type="number" id="weight" placeholder="Weight" value="1">
+            <input type="text" id="weight" placeholder="Weight">
             <button onclick="addEdge()">Add Edge</button>
         </div>
         <div class="buttons">
@@ -29,11 +28,8 @@
         </div>
     </div>
     <div id="graph-container">
-        <h2>Graph Representation</h2>
-        <pre id="graph-representation"></pre>
-        <h2>Traversal Output</h2>
         <div id="traversal-output" class="output"></div>
     </div>
-    <script type="module" src="controlles/script.mjs"></script>
+    <script type="module" src="src/controlles/script.mjs"></script>
 </body>
 </html>

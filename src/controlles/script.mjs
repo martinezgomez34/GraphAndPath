@@ -1,5 +1,4 @@
 import Graph from "../models/Graph.mjs";
-
 const graph = new Graph();
 const outputElement = document.getElementById('traversal-output');
 
@@ -9,7 +8,6 @@ function addVertex() {
         const added = graph.addVertex(vertexInput);
         if (added) {
             document.getElementById('vertex').value = '';
-            updateGraphRepresentation();
         } else {
             alert(`El vértice '${vertexInput}' ya existe.`);
         }
@@ -25,17 +23,11 @@ function addEdge() {
         if (added) {
             document.getElementById('start').value = ''; 
             document.getElementById('end').value = ''; 
-            document.getElementById('weight').value = '1'; 
-            updateGraphRepresentation(); 
+            document.getElementById('weight').value = ''; 
         } else {
             alert(`Los vértices '${start}' o '${end}' no se encontraron.`);
         }
     }
-}
-
-function updateGraphRepresentation() {
-    const representation = graph.getGraphRepresentation(); 
-    document.getElementById('graph-representation').innerText = representation; 
 }
 
 function performBFS() {
