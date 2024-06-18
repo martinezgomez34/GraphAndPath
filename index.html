@@ -1,31 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cities Graph</title>
+    <title>Gráfico de Ciudades</title>
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
     <div>
         <div class="vertex">
-            <label for="vertex">Add City: </label>
-            <input type="text" id="vertex" placeholder="City name">
-            <button onclick="addVertex()">Add City</button>
+            <label for="vertex">Añadir Ciudad: </label>
+            <input type="text" id="vertex" placeholder="Nombre de la ciudad">
+            <button onclick="addVertex()">Añadir Ciudad</button>
         </div>
         <div class="edge">
-            <label for="start">Start: </label>
-            <input type="text" id="start" placeholder="Start City">
-            <label for="end">End: </label>
-            <input type="text" id="end" placeholder="End City">
-            <label for="weight">Weight: </label>
-            <input type="text" id="weight" placeholder="Weight">
-            <button onclick="addEdge()">Add Edge</button>
+            <label for="start">Inicio: </label>
+            <input type="text" id="start" placeholder="Ciudad de inicio">
+            <label for="end">Fin: </label>
+            <input type="text" id="end" placeholder="Ciudad de destino">
+            <label for="weight">Peso: </label>
+            <input type="text" id="weight" placeholder="Peso">
+            <button onclick="addEdge()">Añadir Arista</button>
         </div>
         <div class="buttons">
-            <button onclick="performBFS()">Perform BFS</button>
-            <button onclick="performDFS()">Perform DFS</button>
-            <button onclick="performDistrap()">Find Shortest Path</button>
+            <button onclick="performBFS()">Realizar BFS</button>
+            <button onclick="performDFS()">Realizar DFS</button>
+        </div>
+        <div class="edge">
+            <h2>Dijkstra</h2>
+            <label for="start">Inicio: </label>
+            <input type="text" id="startDijkstra" placeholder="Ciudad de inicio">
+            <label for="end">Fin: </label>
+            <input type="text" id="endDijkstra" placeholder="Ciudad de destino">
+        </div>
+        <div class="buttons">
+            <button onclick="performDistrap()">Encontrar Camino Más Corto</button>
         </div>
     </div>
     <div id="graph-container">

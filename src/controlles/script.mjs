@@ -9,7 +9,7 @@ function addVertex() {
         if (added) {
             document.getElementById('vertex').value = '';
         } else {
-            alert(`'${vertexInput}' exists.`);
+            alert(`'${vertexInput}' existe.`);
         }
     }
 }
@@ -44,15 +44,15 @@ function performDFS() {
     });
 }
 
-function performDistrap() {
-    const start = document.getElementById('start').value.trim();
-    const end = document.getElementById('end').value.trim();
+function performDijkstra() {
+    const start = document.getElementById('startDijkstra').value.trim();
+    const end = document.getElementById('endDijkstra').value.trim();
     if (start && end) {
-        const result = graph.distrap(start, end);
+        const result = graph.dijkstra(start, end);
         if (typeof result === 'string') {
             outputElement.innerText = result;
         } else {
-            outputElement.innerText = `${result.path.join(' -> ')} distance ${result.distance}`;
+            outputElement.innerText = `${result.path.join(' -> ')} distancia ${result.distance}`;
         }
     } else {
         alert('Error.');
@@ -66,4 +66,4 @@ window.addVertex = addVertex;
 window.addEdge = addEdge;
 window.performBFS = performBFS;
 window.performDFS = performDFS;
-window.performDistrap = performDistrap;
+window.performDistrap = performDijkstra;

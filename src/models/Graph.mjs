@@ -72,7 +72,7 @@ export default class Graph {
             }
         }
     }
-    distrap(start, end) {
+    dijkstra(start, end) {
         const distances = new Map();
         const visited = new Map();
         const previous = new Map();
@@ -107,7 +107,7 @@ export default class Graph {
         }
 
         if (distances.get(endIndex) === Infinity) {
-            return `No path from ${start} to ${end}`;
+            return `No hay camino ${start} a ${end}`;
         } else {
             return {
                 distance: distances.get(endIndex),
