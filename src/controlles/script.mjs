@@ -9,7 +9,7 @@ function addVertex() {
         if (added) {
             document.getElementById('vertex').value = '';
         } else {
-            alert(`El vértice '${vertexInput}' ya existe.`);
+            alert(`'${vertexInput}' exists.`);
         }
     }
 }
@@ -25,7 +25,7 @@ function addEdge() {
             document.getElementById('end').value = ''; 
             document.getElementById('weight').value = ''; 
         } else {
-            alert(`Los vértices '${start}' o '${end}' no se encontraron.`);
+            alert(`'${start}'  '${end}' Error.`);
         }
     }
 }
@@ -44,6 +44,21 @@ function performDFS() {
     });
 }
 
+function performDistrap() {
+    const start = document.getElementById('start').value.trim();
+    const end = document.getElementById('end').value.trim();
+    if (start && end) {
+        const result = graph.distrap(start, end);
+        if (typeof result === 'string') {
+            outputElement.innerText = result;
+        } else {
+            outputElement.innerText = `${result.path.join(' -> ')} distance ${result.distance}`;
+        }
+    } else {
+        alert('Error.');
+    }
+}
+
 function clearOutput() {
     outputElement.innerText = '';
 }
@@ -51,3 +66,4 @@ window.addVertex = addVertex;
 window.addEdge = addEdge;
 window.performBFS = performBFS;
 window.performDFS = performDFS;
+window.performDistrap = performDistrap;
