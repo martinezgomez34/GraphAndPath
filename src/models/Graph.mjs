@@ -72,61 +72,47 @@ export default class Graph {
             }
         }
     }
-    dijkstra(start, end) {
-        const distances = new Map();
-        const visited = new Map();
-        const previous = new Map();
 
-        const startIndex = this.#map.get(start);
-        const endIndex = this.#map.get(end);
+    dijkstra(startVertex) {
+        const n = this.#adjacencyMatrix.length;
+        const D = new Map();
+        const V = {};
+        const L_ = new Linkedlist();
 
-        this.#map.forEach((value, key) => {
-            distances.set(value, Infinity);
-            visited.set(value, false);
-            previous.set(value, null);
-        });
+        for (const vertex of this.#map.keys()) {
+            D.set(vertex, Infinity);
+            V[vertex] = false;
+        }
+        D.set(startVertex, 0);
+        L_.insert({ value: startVertex, priority: 0 });
 
-        distances.set(startIndex, 0);
+        while (!L_.isEmpty()) {
+            const { value: vertex, priority: distance } = L_.poll();
 
-        for (let i = 0; i < this.#adjacencyMatrix.length; i++) {
-            const u = this.#minDistance(distances, visited);
-            if (u === null) break;
-            visited.set(u, true);
+            if (!V[vertex]) {
+                V[vertex] = true;
 
-            for (let v = 0; v < this.#adjacencyMatrix[u].length; v++) {
-                if (!visited.get(v) && this.#adjacencyMatrix[u][v] && distances.get(u) + this.#adjacencyMatrix[u][v] < distances.get(v)) {
-                    distances.set(v, distances.get(u) + this.#adjacencyMatrix[u][v]);
-                    previous.set(v, u);
+                const vertexIndex = this.#map.get(vertex);
+
+                for (let i = 0; i < n; i++) {
+                    if (this.#adjacencyMatrix[vertexIndex][i] !== null) {
+                        const adjacentVertex = [...this.#map.keys()][i];
+                        const weight = this.#adjacencyMatrix[vertexIndex][i];
+                        const newDistance = distance + weight;
+
+                        if (newDistance < D.get(adjacentVertex)) {
+                            D.set(adjacentVertex, newDistance);
+                            L_.insert({ value: adjacentVertex, priority: newDistance });
+                        }
+                    }
                 }
             }
         }
 
-        const path = new Linkedlist();
-        for (let at = endIndex; at !== null; at = previous.get(at)) {
-            path.pushFront([...this.#map].find(([key, value]) => value === at)[0]);
-        }
-
-        if (distances.get(endIndex) === Infinity) {
-            return `No hay camino ${start} a ${end}`;
-        } else {
-            return {
-                distance: distances.get(endIndex),
-                path: path.getElements(), 
-            };
-        }
+        return D;
     }
 
-    #minDistance(distances, visited) {
-        let min = Infinity;
-        let minIndex = null;
-
-        distances.forEach((value, key) => {
-            if (!visited.get(key) && value < min) {
-                min = value;
-                minIndex = key;
-            }
-        });
-
-        return minIndex;
+    getMap(startVertex) {
+        return this.dijkstra(startVertex);
     }
 }

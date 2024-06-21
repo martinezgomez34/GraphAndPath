@@ -31,22 +31,27 @@ export default class Linkedlist{
         return value;
     }
     
-    pushFront(value) {
-        const newNode = { value, next: this.head };
-        if (!this.head) {
-            this.tail = newNode;
+    insert(value, priority) {
+        const newNode = { value, priority, next: null };
+
+        if (!this.head || priority < this.head.priority) {
+            newNode.next = this.head;
+            this.head = newNode;
+        } else {
+            let current = this.head;
+            while (current.next && priority >= current.next.priority) {
+                current = current.next;
+            }
+            newNode.next = current.next;
+            current.next = newNode;
         }
-        this.head = newNode;
     }
-    
-    getElements() {
-        const elements = [];
-        let current = this.head;
-        while (current) {
-            elements.push(current.value);
-            current = current.next;
-        }
-        return elements;
+
+    poll() {
+        if (!this.head) return null;
+        const value = this.head.value;
+        this.head = this.head.next;
+        return value;
     }
 
     isEmpty() {

@@ -45,25 +45,23 @@ function performDFS() {
 }
 
 function performDijkstra() {
-    const start = document.getElementById('startDijkstra').value.trim();
-    const end = document.getElementById('endDijkstra').value.trim();
-    if (start && end) {
-        const result = graph.dijkstra(start, end);
-        if (typeof result === 'string') {
-            outputElement.innerText = result;
-        } else {
-            outputElement.innerText = `${result.path.join(' -> ')} distancia ${result.distance}`;
+    clearOutput();
+    const startVertex = prompt("Introduzca el vértice inicial:");
+    const vertexD = startVertex;
+    if (startVertex) {
+        const distances = graph.dijkstra(startVertex);
+        for (const [vertex, distance] of distances.entries()) {
+            outputElement.innerText += `${vertexD} -> ${vertex}: ${distance}\n`;
         }
-    } else {
-        alert('Error.');
     }
 }
 
 function clearOutput() {
     outputElement.innerText = '';
 }
+
 window.addVertex = addVertex;
 window.addEdge = addEdge;
 window.performBFS = performBFS;
 window.performDFS = performDFS;
-window.performDistrap = performDijkstra;
+window.performDijkstra = performDijkstra;
